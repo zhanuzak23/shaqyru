@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#2A0912">
+<meta name="theme-color" content="#F3E9DC">
 <meta name="robots" content="noindex, nofollow">
 <title>Мейіржан &amp; Тоғжан</title>
 <meta name="description" content="Мейіржан мен Тоғжанның шаңырақ көтеру тойына шақыру. 2026 жылғы 10 қазан, сағат 18:00, «Тамаша» мейрамханасы, Астана.">
@@ -16,21 +16,19 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&amp;family=Manrope:wght@200;300;400;500;600&amp;display=swap" rel="stylesheet">
 <style>
 :root{
-  --ink:#2A0912;
-  --wine:#48111F;
-  --wine-lift:#63182B;
-  --paper:#F2E8D9;
-  --paper-2:#E7DAC5;
+  /* — светлая, открытая гамма — */
+  --ground:#F3E9DC;        /* тёплый песок — фон страницы */
+  --ground-top:#EFDFC9;    /* верх градиента в шапке */
+  --card:#FCF8F1;          /* арка — светлее фона, читается как бумага */
 
-  --on-wine:#F4EADB;
-  --on-wine-soft:rgba(244,234,219,.72);
-  --on-paper:#3A0F1A;
-  --on-paper-soft:#8A6A62;
+  --ink:#43151F;           /* основной текст */
+  --ink-soft:#7A5A4E;      /* второстепенный */
 
-  --gold:#C6A870;
-  --gold-lit:#E9D6AF;
-  --gold-dim:rgba(198,168,112,.34);
-  --rose:#A8324A;
+  --wine:#6E2436;          /* кнопки, сильный акцент */
+  --wine-lift:#88304A;
+  --rose:#A8324A;          /* орнаменты */
+  --bronze:#8F6B2E;        /* капслочные подписи */
+  --bronze-lit:#C9A863;
 
   --serif:"Playfair Display","Noto Serif",Georgia,"Times New Roman",serif;
   --sans:"Manrope","Noto Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
@@ -41,8 +39,8 @@
 *{box-sizing:border-box;margin:0;padding:0}
 html{-webkit-text-size-adjust:100%}
 body{
-  background:var(--ink);
-  color:var(--on-wine);
+  background:var(--ground);
+  color:var(--ink);
   font-family:var(--sans);
   font-weight:300;
   line-height:1.6;
@@ -50,48 +48,49 @@ body{
   overflow-x:hidden;
 }
 html.locked,html.locked body{overflow:hidden}
-::selection{background:var(--gold);color:var(--ink)}
+::selection{background:var(--bronze);color:var(--card)}
 a{color:inherit}
-:focus-visible{outline:2px solid var(--gold-lit);outline-offset:4px;border-radius:3px}
+:focus-visible{outline:2px solid var(--wine);outline-offset:4px;border-radius:3px}
 
 .grain{
-  position:fixed;inset:0;z-index:40;pointer-events:none;opacity:.22;mix-blend-mode:overlay;
+  position:fixed;inset:0;z-index:40;pointer-events:none;opacity:.10;mix-blend-mode:multiply;
   background-image:url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
 }
-#dust{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.5}
+#dust{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.6}
 
 .card{
   position:relative;z-index:2;
   max-width:var(--col);margin:0 auto;
-  background:var(--wine);
-  box-shadow:0 0 120px rgba(0,0,0,.72);
+  background:var(--ground);
+  box-shadow:0 0 90px rgba(110,36,54,.13);
   overflow:hidden;
 }
 
-/* ── ornaments ── */
+/* ── орнаменты ── */
 .orn{display:block;margin:0 auto}
 .orn path,.orn circle{
-  fill:none;stroke:var(--gold);stroke-width:1;
+  fill:none;stroke:var(--rose);stroke-width:1;
   stroke-linecap:round;stroke-linejoin:round;
   vector-effect:non-scaling-stroke;
 }
-.orn.on-paper path,.orn.on-paper circle{stroke:rgba(168,50,74,.5)}
 .draw path,.draw circle{stroke-dasharray:640;stroke-dashoffset:640}
 .draw.in path,.draw.in circle{animation:drawIn 2.3s var(--ease) forwards}
 .draw.in :nth-child(2){animation-delay:.14s}
 .draw.in :nth-child(3){animation-delay:.28s}
 .draw.in :nth-child(4){animation-delay:.4s}
 .draw.in :nth-child(5){animation-delay:.5s}
-.draw.in :nth-child(6){animation-delay:.6s}
-.draw.in :nth-child(7){animation-delay:.7s}
-.draw.in :nth-child(8){animation-delay:.8s}
 @keyframes drawIn{to{stroke-dashoffset:0}}
 
-/* ── opening seal ── */
+.oyu{display:block;width:clamp(130px,36vw,168px);height:auto}
+#seal .oyu{animation:oyuIn 1.8s .2s var(--ease) both}
+.hero .oyu{width:clamp(142px,39vw,182px);margin:30px auto 0}
+@keyframes oyuIn{from{opacity:0;transform:scale(.86)}to{opacity:1;transform:none}}
+
+/* ── стартовый экран ── */
 #seal{
   position:fixed;inset:0;z-index:60;
   display:grid;place-items:center;text-align:center;
-  background:radial-gradient(120% 80% at 50% 38%,#63182B,#2A0912 72%);
+  background:radial-gradient(120% 80% at 50% 36%,#FCF8F1,var(--ground-top) 78%);
   transition:opacity 1s var(--ease),visibility 1s;
 }
 #seal.gone{opacity:0;visibility:hidden}
@@ -100,52 +99,46 @@ a{color:inherit}
   animation:sealUp 1.5s var(--ease) both;
 }
 @keyframes sealUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
-.seal-eyebrow{font-size:11px;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);font-weight:500}
-.oyu{display:block;width:clamp(130px,36vw,168px);height:auto}
-#seal .oyu{animation:oyuIn 1.8s .2s var(--ease) both}
-.hero .oyu{width:clamp(142px,39vw,182px);margin:30px auto 0}
-@keyframes oyuIn{from{opacity:0;transform:scale(.86)}to{opacity:1;transform:none}}
-.seal-mono{font-family:var(--serif);font-size:clamp(40px,13vw,58px);letter-spacing:.04em;line-height:1;font-weight:500}
-.seal-mono em{font-style:italic;color:var(--gold)}
-.seal-names{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--on-wine-soft);font-weight:400}
+.seal-eyebrow{font-size:11px;letter-spacing:.4em;text-transform:uppercase;color:var(--bronze);font-weight:500}
+.seal-mono{font-family:var(--serif);font-size:clamp(40px,13vw,58px);letter-spacing:.04em;line-height:1;font-weight:500;color:var(--ink)}
+.seal-mono em{font-style:italic;color:var(--rose)}
+.seal-names{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-soft);font-weight:400}
 .open-btn{
-  margin-top:6px;padding:18px 48px;border:1px solid var(--gold-dim);border-radius:100px;
-  background:transparent;color:var(--on-wine);font-family:var(--sans);
+  margin-top:6px;padding:18px 48px;border:1px solid var(--wine);border-radius:100px;
+  background:transparent;color:var(--wine);font-family:var(--sans);
   font-size:11.5px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;cursor:pointer;
-  transition:background .5s var(--ease),border-color .5s var(--ease),color .5s var(--ease);
+  transition:background .5s var(--ease),color .5s var(--ease);
 }
-.open-btn:hover{background:var(--gold);border-color:var(--gold);color:var(--ink)}
-.seal-hint{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(244,234,219,.42)}
+.open-btn:hover{background:var(--wine);color:var(--card)}
+.seal-hint{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);opacity:.7}
 
-/* ── hero ── */
+/* ── шапка ── */
 .hero{
   position:relative;padding:78px 26px 0;text-align:center;
-  background:
-    radial-gradient(140% 62% at 50% -6%,rgba(99,24,43,.98),transparent 70%),
-    linear-gradient(180deg,#5A1626,var(--wine) 62%);
+  background:linear-gradient(180deg,var(--ground-top),var(--ground) 58%);
 }
 .hero::after{
   content:"";position:absolute;inset:0;pointer-events:none;
-  background:radial-gradient(48% 34% at 50% 22%,rgba(198,168,112,.18),transparent 72%);
+  background:radial-gradient(46% 32% at 50% 16%,rgba(252,248,241,.85),transparent 72%);
   animation:breathe 11s ease-in-out infinite alternate;
 }
-@keyframes breathe{from{opacity:.5}to{opacity:1}}
+@keyframes breathe{from{opacity:.45}to{opacity:1}}
 .hero>*{position:relative;z-index:2}
 
-.eyebrow{font-size:11px;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);font-weight:500}
+.eyebrow{font-size:11px;letter-spacing:.4em;text-transform:uppercase;color:var(--bronze);font-weight:500}
 .greeting{
-  font-family:var(--serif);font-weight:400;
+  font-family:var(--serif);font-weight:400;color:var(--ink);
   font-size:clamp(27px,7.4vw,36px);letter-spacing:.13em;text-transform:uppercase;
   line-height:1.42;text-wrap:balance;margin-top:26px;
 }
-.lead{margin:24px auto 0;max-width:32ch;font-size:16px;line-height:1.9;color:var(--on-wine-soft)}
+.lead{margin:24px auto 0;max-width:32ch;font-size:16px;line-height:1.9;color:var(--ink-soft)}
 
-/* ── arch (paper) ── */
+/* ── арка ── */
 .arch{
-  position:relative;z-index:3;margin:56px 16px -1px;
-  background:linear-gradient(180deg,var(--paper),var(--paper-2));
-  color:var(--on-paper);
-  border-radius:264px 264px 0 0;padding-bottom:60px;
+  position:relative;z-index:3;margin:56px 16px 0;
+  background:var(--card);
+  border-radius:264px 264px 0 0;padding-bottom:64px;
+  box-shadow:0 -2px 40px rgba(110,36,54,.07);
 }
 .arch::before{
   content:"";position:absolute;left:15px;right:15px;top:18px;bottom:0;
@@ -159,7 +152,7 @@ a{color:inherit}
 }
 .title-group{display:grid;justify-items:center;gap:14px}
 .names{
-  font-family:var(--serif);font-weight:500;
+  font-family:var(--serif);font-weight:500;color:var(--ink);
   font-size:clamp(32px,8.6vw,44px);letter-spacing:.005em;line-height:1.08;
   display:grid;justify-items:center;gap:0;
 }
@@ -167,166 +160,60 @@ a{color:inherit}
    Поля несимметричны, чтобы на глаз зазоры были равными. */
 .names em{
   font-size:.62em;font-style:italic;font-weight:400;margin:.475em 0 .125em;line-height:1;
-  background:linear-gradient(100deg,#B2914F 0%,#8C6B33 34%,var(--gold-lit) 50%,#B2914F 68%);
+  background:linear-gradient(100deg,#A9843F 0%,#75551D 34%,var(--bronze-lit) 50%,#A9843F 68%);
   background-size:280% 100%;-webkit-background-clip:text;background-clip:text;
   -webkit-text-fill-color:transparent;color:transparent;
   animation:shimmer 6.5s ease-in-out infinite;
 }
 @keyframes shimmer{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
-.occasion{font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--on-paper-soft)}
+.occasion{font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-soft)}
 
 .info{display:grid;gap:30px;width:100%}
-.row .k{font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--on-paper-soft);margin-bottom:11px}
-.row .v{font-family:var(--serif);font-size:25px;line-height:1.35;font-weight:500}
-.row .v span{display:block;font-family:var(--sans);font-size:14.5px;font-weight:300;color:var(--on-paper-soft);margin-top:11px;line-height:1.7}
+.row .k{font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--bronze);margin-bottom:11px;font-weight:500}
+.row .v{font-family:var(--serif);font-size:25px;line-height:1.35;font-weight:500;color:var(--ink)}
+.row .v span{display:block;font-family:var(--sans);font-size:14.5px;font-weight:300;color:var(--ink-soft);margin-top:11px;line-height:1.7}
 .rule{height:1px;width:44px;justify-self:center;background:rgba(168,50,74,.3)}
 
 .btn{
   display:inline-flex;align-items:center;justify-content:center;gap:9px;
   padding:16px 32px;border-radius:100px;text-decoration:none;cursor:pointer;
   font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;
-  background:var(--wine);color:var(--paper);border:1px solid var(--wine);
+  background:var(--wine);color:var(--card);border:1px solid var(--wine);
   transition:transform .4s var(--ease),background .4s var(--ease),box-shadow .4s var(--ease);
 }
-.btn:hover{background:var(--wine-lift);border-color:var(--wine-lift);transform:translateY(-2px);box-shadow:0 16px 30px -16px rgba(42,9,18,.85)}
+.btn:hover{background:var(--wine-lift);border-color:var(--wine-lift);transform:translateY(-2px);box-shadow:0 16px 30px -16px rgba(110,36,54,.6)}
 .btn svg{width:15px;height:15px;flex:none;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
 
-/* ── section chrome ── */
-.sec{padding:62px 24px 0;text-align:center}
-.sec-title{font-family:var(--serif);font-size:clamp(19px,5.2vw,23px);letter-spacing:.2em;text-transform:uppercase;font-weight:400;text-wrap:balance}
-.sec-sub{margin-top:11px;font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold)}
+/* ── подвал ── */
+.host{padding:58px 26px 116px;text-align:center;background:var(--card)}
+.host .k{font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--bronze);font-weight:500}
+.host .n{margin-top:13px;font-family:var(--serif);font-size:24px;letter-spacing:.02em;font-weight:500;color:var(--ink)}
 
-/* ── calendar — formal, on the wine ground ── */
-.cal{
-  margin:30px auto 0;max-width:400px;
-  border:1px solid rgba(198,168,112,.3);
-  padding:26px 20px 22px;
-}
-.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px 2px}
-.cal-grid .wd{
-  font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;
-  color:var(--gold);padding-bottom:16px;
-}
-.cal-grid .d{
-  aspect-ratio:1;display:grid;place-items:center;position:relative;
-  font-family:var(--serif);font-size:19px;font-weight:400;
-  color:var(--on-wine);font-variant-numeric:tabular-nums;
-}
-.cal-grid .d.dim{color:rgba(244,234,219,.42)}
-.cal-grid .d.pick{color:var(--ink);font-weight:600}
-/* Сдвинут на 7% вниз: цифры в строке сидят ниже геометрического
-   центра ячейки, круг центрируется по ним, а не по клетке. */
-.cal-grid .d.pick::before{
-  content:"";position:absolute;inset:18% 11% 4%;border-radius:50%;
-  background:var(--gold);
-  transform:scale(0);transition:transform .7s var(--ease);
-}
-.cal-grid .d.pick>span{position:relative;z-index:1}
-.cal.in .d.pick::before{transform:scale(1)}
-.cal-foot{
-  margin-top:22px;padding-top:18px;border-top:1px solid rgba(198,168,112,.24);
-  display:flex;align-items:center;justify-content:center;gap:18px;
-}
-.cal-foot .t{font-family:var(--serif);font-size:23px;font-weight:500;color:var(--gold-lit);font-variant-numeric:tabular-nums}
-.cal-foot .vl{width:1px;height:26px;background:rgba(198,168,112,.3)}
-.cal-foot .l{font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--on-wine-soft)}
-
-/* ── countdown ── */
-.count{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;max-width:380px;margin:30px auto 0}
-.cell{padding:19px 4px;border:1px solid rgba(198,168,112,.22);background:rgba(99,24,43,.34)}
-.cell b{
-  display:block;font-family:var(--serif);font-weight:500;font-size:clamp(25px,7vw,31px);
-  line-height:1;color:var(--gold-lit);font-variant-numeric:tabular-nums;
-}
-.cell i{display:block;margin-top:11px;font-style:normal;font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--on-wine-soft)}
-
-/* ── quote ── */
-.quote{padding:66px 32px 0;text-align:center}
-.quote p{
-  font-family:var(--serif);font-style:italic;font-weight:400;
-  font-size:clamp(19px,5.2vw,23px);line-height:1.8;
-  color:rgba(244,234,219,.94);max-width:28ch;margin:0 auto;text-wrap:balance;
-}
-
-/* ── rsvp form ── */
-.form{
-  margin:30px auto 0;max-width:400px;text-align:left;
-  border:1px solid rgba(198,168,112,.26);
-  padding:28px 24px;background:rgba(99,24,43,.3);
-  display:grid;gap:24px;
-}
-.lbl{
-  display:block;font-size:10.5px;letter-spacing:.26em;text-transform:uppercase;
-  color:var(--gold);font-weight:500;margin-bottom:12px;
-}
-.form input[type=text]{
-  width:100%;padding:15px 16px;
-  background:rgba(42,9,18,.5);color:var(--on-wine);
-  border:1px solid rgba(198,168,112,.28);border-radius:0;
-  font-family:var(--serif);font-size:19px;font-weight:400;
-  transition:border-color .35s var(--ease),background .35s var(--ease);
-}
-.form input[type=text]::placeholder{color:rgba(244,234,219,.34);font-family:var(--sans);font-size:15px}
-.form input[type=text]:focus{outline:none;border-color:var(--gold);background:rgba(42,9,18,.75)}
-.opts{border:none;display:grid;gap:11px}
-.opt{
-  display:flex;align-items:flex-start;gap:13px;cursor:pointer;
-  padding:15px 16px;border:1px solid rgba(198,168,112,.2);
-  transition:border-color .35s var(--ease),background .35s var(--ease);
-}
-.opt:hover{border-color:rgba(198,168,112,.45);background:rgba(198,168,112,.06)}
-.opt input{position:absolute;opacity:0;width:0;height:0}
-.dot{
-  flex:none;width:17px;height:17px;margin-top:2px;border-radius:50%;
-  border:1px solid rgba(198,168,112,.5);display:grid;place-items:center;
-  transition:border-color .3s var(--ease);
-}
-.dot::after{
-  content:"";width:9px;height:9px;border-radius:50%;background:var(--gold);
-  transform:scale(0);transition:transform .3s var(--ease);
-}
-.opt input:checked~.dot{border-color:var(--gold)}
-.opt input:checked~.dot::after{transform:scale(1)}
-.opt input:focus-visible~.dot{outline:2px solid var(--gold-lit);outline-offset:3px}
-.opt span.txt{font-size:15.5px;line-height:1.5;color:var(--on-wine)}
-.opt:has(input:checked){border-color:var(--gold);background:rgba(198,168,112,.1)}
-
-.btn.gold{background:var(--gold);border-color:var(--gold);color:var(--ink);width:100%}
-.btn.gold:hover{background:var(--gold-lit);border-color:var(--gold-lit)}
-.btn.gold:disabled{opacity:.5;cursor:default;transform:none;box-shadow:none}
-.form-msg{font-size:13.5px;line-height:1.65;text-align:center;min-height:1px}
-.form-msg.ok{color:var(--gold-lit)}
-.form-msg.err{color:#F0A0A8}
-
-/* ── host ── */
-.host{padding:58px 26px 116px;text-align:center}
-.host .k{font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold)}
-.host .n{margin-top:13px;font-family:var(--serif);font-size:24px;letter-spacing:.02em;font-weight:500}
-
-/* ── reveal ── */
+/* ── появление ── */
 .rv{opacity:0;transform:translateY(18px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
 .rv.in{opacity:1;transform:none}
 .d1{transition-delay:.12s}.d2{transition-delay:.26s}.d3{transition-delay:.4s}.d4{transition-delay:.54s}
 
-/* ── music ── */
+/* ── музыка ── */
 .music{
   position:fixed;right:16px;bottom:16px;z-index:50;
   width:58px;height:58px;border-radius:50%;
-  border:1px solid rgba(198,168,112,.5);
-  background:rgba(42,9,18,.92);backdrop-filter:blur(10px);
+  border:1px solid var(--wine);
+  background:var(--card);
   display:grid;place-items:center;cursor:pointer;
-  transition:transform .35s var(--ease),border-color .35s var(--ease),background .35s var(--ease);
+  box-shadow:0 10px 26px -12px rgba(110,36,54,.5);
+  transition:transform .35s var(--ease),background .35s var(--ease);
 }
-.music:hover{transform:scale(1.06);border-color:var(--gold);background:var(--wine-lift)}
+.music:hover{transform:scale(1.06);background:#fff}
 .music:active{transform:scale(.94)}
 .music::after{
-  content:"";position:absolute;inset:-1px;border-radius:50%;border:1px solid var(--gold);
+  content:"";position:absolute;inset:-1px;border-radius:50%;border:1px solid var(--wine);
   animation:ping 2.8s var(--ease) infinite;
 }
 .music.on::after{animation:none;opacity:0}
-@keyframes ping{0%{transform:scale(1);opacity:.55}70%{transform:scale(1.4);opacity:0}100%{opacity:0}}
+@keyframes ping{0%{transform:scale(1);opacity:.5}70%{transform:scale(1.4);opacity:0}100%{opacity:0}}
 .bars{display:flex;align-items:center;gap:3px;height:18px}
-.bars i{width:2.5px;height:5px;background:var(--gold);display:block;border-radius:2px}
+.bars i{width:2.5px;height:5px;background:var(--wine);display:block;border-radius:2px}
 .music.on .bars i{animation:eq .95s ease-in-out infinite}
 .music.on .bars i:nth-child(2){animation-delay:.13s}
 .music.on .bars i:nth-child(3){animation-delay:.26s}
@@ -334,28 +221,22 @@ a{color:inherit}
 @keyframes eq{0%,100%{height:5px}50%{height:17px}}
 .mtip{
   position:fixed;right:84px;bottom:32px;z-index:49;
-  font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(244,234,219,.8);
-  background:rgba(42,9,18,.92);padding:9px 15px;border-radius:100px;border:1px solid rgba(198,168,112,.28);
+  font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--card);
+  background:var(--wine);padding:9px 15px;border-radius:100px;
   white-space:nowrap;opacity:0;transform:translateX(8px);
   transition:opacity .45s var(--ease),transform .45s var(--ease);pointer-events:none;
 }
 .mtip.show{opacity:1;transform:none}
 
 @media (max-width:400px){
-  .arch{margin:48px 12px -1px;border-radius:210px 210px 0 0}
+  .arch{margin:48px 12px 0;border-radius:210px 210px 0 0}
   .arch::before{border-radius:198px 198px 0 0;left:11px;right:11px}
   .arch-in{width:calc(100% - 60px);padding-top:72px;gap:28px}
-  .cal{padding:22px 13px 18px}
-  .cal-grid .d{font-size:17px}
-  .cal-grid .wd{font-size:9px}
-  .cell{padding:16px 2px}
-  .form{padding:24px 18px}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition-duration:.01ms!important}
   .rv{opacity:1;transform:none}
   .draw path,.draw circle{stroke-dashoffset:0}
-  .cal .d.pick::before{transform:scale(1)}
   #dust{display:none}
 }
 </style>
@@ -368,7 +249,7 @@ a{color:inherit}
 
 <audio id="track" src="music.mp3" loop preload="none"></audio>
 
-<!-- ══════════ opening seal ══════════ -->
+<!-- ══════════ стартовый экран ══════════ -->
 <div id="seal">
   <div class="seal-in">
     <p class="seal-eyebrow">Шақыру қағазы</p>
@@ -382,11 +263,9 @@ a{color:inherit}
 
 <main class="card">
 
-  <!-- ══════════ hero ══════════ -->
   <header class="hero">
     <p class="eyebrow rv">10 · 10 · 2026</p>
 
-    <!-- ою-өрнек -->
     <img class="oyu rv d1" src="oyu.svg" alt="" width="488" height="507">
 
     <h1 class="greeting rv d2">Құрметті<br>қонақтар!</h1>
@@ -407,7 +286,7 @@ a{color:inherit}
       <path d="M216 17 H312" transform="scale(-1,1) translate(-320,0)"></path>
     </svg>
 
-    <!-- ══════════ arch ══════════ -->
+    <!-- ══════════ арка ══════════ -->
     <section class="arch rv">
       <div class="arch-in">
         <div class="title-group">
@@ -415,7 +294,7 @@ a{color:inherit}
           <p class="occasion">Шаңырақ көтеру тойы</p>
         </div>
 
-        <svg class="orn on-paper" width="136" height="32" viewBox="0 0 128 30" aria-hidden="true">
+        <svg class="orn" width="136" height="32" viewBox="0 0 128 30" aria-hidden="true">
           <path d="M58 15 L64 9 L70 15 L64 21 Z"></path>
           <path d="M72 15 C80 15, 84 8, 92 8 C102 8, 105 18, 96 19.4 C90 20.2, 89 15, 94 13.8"></path>
           <path d="M72 15 C80 15, 84 8, 92 8 C102 8, 105 18, 96 19.4 C90 20.2, 89 15, 94 13.8" transform="scale(-1,1) translate(-128,0)"></path>
@@ -447,70 +326,6 @@ a{color:inherit}
     </section>
   </header>
 
-  <!-- ══════════ calendar ══════════ -->
-  <section class="sec rv">
-    <h2 class="sec-title">Той күні</h2>
-    <p class="sec-sub">Қазан · 2026</p>
-    <div class="cal" id="calCard">
-      <div class="cal-grid" id="calGrid"></div>
-      <div class="cal-foot">
-        <p class="t">18:00</p>
-        <span class="vl" aria-hidden="true"></span>
-        <p class="l">Той салтанаты</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ══════════ countdown ══════════ -->
-  <section class="sec rv">
-    <h2 class="sec-title">Тойға дейін</h2>
-    <div class="count" id="count" role="timer">
-      <div class="cell"><b id="cd">—</b><i>күн</i></div>
-      <div class="cell"><b id="ch">—</b><i>сағат</i></div>
-      <div class="cell"><b id="cm">—</b><i>минут</i></div>
-      <div class="cell"><b id="cs">—</b><i>секунд</i></div>
-    </div>
-  </section>
-
-  <!-- ══════════ quote ══════════ -->
-  <section class="quote rv">
-    <p>Сіздердің қатысуларыңыз — біз үшін үлкен қуаныш әрі мереке көркі!</p>
-  </section>
-
-  <!-- ══════════ rsvp ══════════ -->
-  <section class="sec rv">
-    <h2 class="sec-title">Жауабыңызды күтеміз</h2>
-    <form class="form" id="rsvpForm" novalidate>
-      <div>
-        <label class="lbl" for="guestName">Атыңыз</label>
-        <input type="text" id="guestName" name="name" placeholder="Аты-жөніңіз" autocomplete="name">
-      </div>
-
-      <fieldset class="opts">
-        <legend class="lbl">Жауабыңыз</legend>
-        <label class="opt">
-          <input type="radio" name="answer" value="Ия, әрине келемін">
-          <span class="dot" aria-hidden="true"></span>
-          <span class="txt">Ия, әрине келемін</span>
-        </label>
-        <label class="opt">
-          <input type="radio" name="answer" value="Жұбайыммен бірге келемін">
-          <span class="dot" aria-hidden="true"></span>
-          <span class="txt">Жұбайыммен бірге келемін</span>
-        </label>
-        <label class="opt">
-          <input type="radio" name="answer" value="Өкінішке орай, келе алмаймын">
-          <span class="dot" aria-hidden="true"></span>
-          <span class="txt">Өкінішке орай, келе алмаймын</span>
-        </label>
-      </fieldset>
-
-      <button type="submit" class="btn gold" id="rsvpSubmit">Жіберу</button>
-      <p class="form-msg" id="formMsg" role="status" aria-live="polite"></p>
-    </form>
-  </section>
-
-  <!-- ══════════ host ══════════ -->
   <footer class="host rv d1">
     <svg class="orn" width="136" height="32" viewBox="0 0 128 30" style="margin-bottom:28px" aria-hidden="true">
       <path d="M58 15 L64 9 L70 15 L64 21 Z"></path>
@@ -528,127 +343,7 @@ a{color:inherit}
 </button>
 
 <script>
-/* ═══════════════════════════════════════════════════
-   ⚙  ПАРАМЕТРЛЕР / SETTINGS
-   ═══════════════════════════════════════════════════ */
-var CONFIG = {
-  /* Telegram бот — @BotFather берген токен және чат id */
-  tgToken: "PASTE_BOT_TOKEN",
-  tgChat:  "PASTE_CHAT_ID",
-
-  /* Той басталатын сәт — Астана уақыты (UTC+5) */
-  startISO: "2026-10-10T18:00:00+05:00"
-};
-
-/* ── Күнтізбе торы: 2026 жылғы қазан, дүйсенбіден ── */
-(function(){
-  var wd = ["Дс","Сс","Ср","Бс","Жм","Сн","Жк"];
-  var grid = document.getElementById("calGrid");
-  wd.forEach(function(w){
-    var e = document.createElement("div");
-    e.className = "wd"; e.textContent = w; grid.appendChild(e);
-  });
-
-  var lead = (new Date(2026,9,1).getDay() + 6) % 7;
-  var days = new Date(2026,10,0).getDate();
-  for (var i = 0; i < lead; i++) grid.appendChild(document.createElement("div"));
-
-  for (var d = 1; d <= days; d++){
-    var col = (lead + d - 1) % 7;
-    var e = document.createElement("div");
-    e.className = "d" + (col > 4 ? " dim" : "") + (d === 10 ? " pick" : "");
-    if (d === 10){
-      e.innerHTML = "<span>10</span>";
-      e.setAttribute("aria-label", "10 қазан — той күні");
-    } else {
-      e.textContent = d;
-    }
-    grid.appendChild(e);
-  }
-})();
-
-/* ── Кері санақ ── */
-(function(){
-  var target = new Date(CONFIG.startISO).getTime();
-  var el = {
-    d: document.getElementById("cd"), h: document.getElementById("ch"),
-    m: document.getElementById("cm"), s: document.getElementById("cs")
-  };
-  function pad(n){ return n < 10 ? "0" + n : "" + n; }
-
-  function tick(){
-    var diff = target - Date.now();
-    if (diff <= 0){
-      el.d.textContent = el.h.textContent = el.m.textContent = el.s.textContent = "00";
-      clearInterval(timer);
-      return;
-    }
-    var s = Math.floor(diff / 1000);
-    el.d.textContent = String(Math.floor(s / 86400));
-    el.h.textContent = pad(Math.floor(s / 3600) % 24);
-    el.m.textContent = pad(Math.floor(s / 60) % 60);
-    el.s.textContent = pad(s % 60);
-  }
-  tick();
-  var timer = setInterval(tick, 1000);
-})();
-
-/* ── RSVP → Telegram ── */
-(function(){
-  var form = document.getElementById("rsvpForm");
-  var name = document.getElementById("guestName");
-  var msg  = document.getElementById("formMsg");
-  var send = document.getElementById("rsvpSubmit");
-
-  function say(text, kind){
-    msg.textContent = text;
-    msg.className = "form-msg" + (kind ? " " + kind : "");
-  }
-
-  form.addEventListener("submit", function(ev){
-    ev.preventDefault();
-
-    var who = name.value.trim();
-    var picked = form.querySelector('input[name="answer"]:checked');
-
-    if (!who){ say("Атыңызды жазыңыз.", "err"); name.focus(); return; }
-    if (!picked){ say("Жауап нұсқасын таңдаңыз.", "err"); return; }
-
-    if (CONFIG.tgToken.indexOf("PASTE") === 0){
-      say("Бот әлі қосылмаған. Ұйымдастырушыға хабарласыңыз.", "err");
-      return;
-    }
-
-    send.disabled = true;
-    say("Жіберілуде…");
-
-    var text =
-      "🎉 Той — жаңа жауап\n\n" +
-      "👤 " + who + "\n" +
-      "✉️ " + picked.value + "\n" +
-      "🕒 " + new Date().toLocaleString("kk-KZ", { timeZone: "Asia/Almaty" });
-
-    fetch("https://api.telegram.org/bot" + CONFIG.tgToken + "/sendMessage", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ chat_id: CONFIG.tgChat, text: text })
-    })
-    .then(function(r){ return r.json(); })
-    .then(function(data){
-      if (!data.ok) throw new Error(data.description || "Telegram қатесі");
-      form.querySelector(".opts").disabled = true;
-      name.disabled = true;
-      send.textContent = "Жіберілді";
-      say("Рақмет, " + who + "! Жауабыңыз қабылданды.", "ok");
-    })
-    .catch(function(){
-      send.disabled = false;
-      say("Жіберілмеді. Интернетті тексеріп, қайта көріңіз.", "err");
-    });
-  });
-})();
-
-/* ── Скролл анимациясы ── */
+/* ── появление при скролле ── */
 (function(){
   var io = new IntersectionObserver(function(entries){
     entries.forEach(function(e){
@@ -656,10 +351,10 @@ var CONFIG = {
     });
   }, { threshold: .12, rootMargin: "0px 0px -6% 0px" });
 
-  document.querySelectorAll(".rv, .draw, #calCard").forEach(function(el){ io.observe(el); });
+  document.querySelectorAll(".rv, .draw").forEach(function(el){ io.observe(el); });
 })();
 
-/* ── Алтын шаң ── */
+/* ── бронзовая пыль в воздухе ── */
 (function(){
   if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
   var c = document.getElementById("dust"), x = c.getContext("2d"), w, h, parts = [];
@@ -673,13 +368,13 @@ var CONFIG = {
   size();
   addEventListener("resize", size);
 
-  for (var i = 0; i < 34; i++){
+  for (var i = 0; i < 26; i++){
     parts.push({
       x: Math.random(), y: Math.random(),
-      r: Math.random() * 1.4 + .5,
+      r: Math.random() * 1.3 + .5,
       vy: -(Math.random() * .00016 + .00005),
       vx: (Math.random() - .5) * .00008,
-      a: Math.random() * .45 + .12,
+      a: Math.random() * .12 + .05,
       p: Math.random() * Math.PI * 2
     });
   }
@@ -692,7 +387,7 @@ var CONFIG = {
       if (q.y < -.05){ q.y = 1.05; q.x = Math.random(); }
       x.beginPath();
       x.arc(q.x * w, q.y * h, q.r * devicePixelRatio, 0, 6.2832);
-      x.fillStyle = "rgba(233,214,175," + (q.a * (.6 + .4 * Math.sin(t / 1800 + q.p))) + ")";
+      x.fillStyle = "rgba(143,107,46," + (q.a * (.6 + .4 * Math.sin(t / 1800 + q.p))) + ")";
       x.fill();
     }
     requestAnimationFrame(frame);
@@ -700,12 +395,12 @@ var CONFIG = {
   requestAnimationFrame(frame);
 })();
 
-/* ── Әуен: Дос-Мұқасан — Той жыры ── */
+/* ── әуен ── */
 var Music = (function(){
   var track = document.getElementById("track");
   var ctx, gain, wired = false, playing = false;
 
-  /* Web Audio арқылы қосамыз — iOS-та audio.volume жұмыс істемейді */
+  /* через Web Audio: на iOS audio.volume программно не меняется */
   function wire(){
     if (wired) return;
     try {
@@ -716,7 +411,7 @@ var Music = (function(){
       src.connect(gain).connect(ctx.destination);
       wired = true;
     } catch (e) {
-      wired = false;           /* фоллбэк: тікелей ойнатамыз */
+      wired = false;
     }
   }
 
@@ -746,7 +441,7 @@ var Music = (function(){
   };
 })();
 
-/* ── Түймелер мен ашылу ── */
+/* ── кнопки и открытие ── */
 (function(){
   var btn  = document.getElementById("music");
   var tip  = document.getElementById("mtip");
