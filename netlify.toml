@@ -1,0 +1,22 @@
+# Статический сайт: собирать нечего, публикуется корень репозитория.
+[build]
+  publish = "."
+  command = ""
+
+# Аудио отдаём с range-запросами и долгим кэшем — файл не меняется.
+[[headers]]
+  for = "/music.mp3"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/oyu.svg"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Саму страницу не кэшируем надолго, чтобы правки доезжали сразу.
+[[headers]]
+  for = "/index.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+    X-Robots-Tag = "noindex, nofollow"
