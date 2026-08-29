@@ -101,10 +101,9 @@ a{color:inherit}
 }
 @keyframes sealUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
 .seal-eyebrow{font-size:11px;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);font-weight:500}
-.oyu{
-  display:block;width:clamp(130px,36vw,168px);height:auto;
-  animation:oyuIn 1.8s .2s var(--ease) both;
-}
+.oyu{display:block;width:clamp(130px,36vw,168px);height:auto}
+#seal .oyu{animation:oyuIn 1.8s .2s var(--ease) both}
+.hero .oyu{width:clamp(142px,39vw,182px);margin:30px auto 0}
 @keyframes oyuIn{from{opacity:0;transform:scale(.86)}to{opacity:1;transform:none}}
 .seal-mono{font-family:var(--serif);font-size:clamp(40px,13vw,58px);letter-spacing:.04em;line-height:1;font-weight:500}
 .seal-mono em{font-style:italic;color:var(--gold)}
@@ -162,10 +161,12 @@ a{color:inherit}
 .names{
   font-family:var(--serif);font-weight:500;
   font-size:clamp(32px,8.6vw,44px);letter-spacing:.005em;line-height:1.08;
-  display:grid;justify-items:center;gap:2px;
+  display:grid;justify-items:center;gap:0;
 }
+/* «р» в «Мейіржан» свисает и съедает просвет над «&», «Т» — нет.
+   Поля несимметричны, чтобы на глаз зазоры были равными. */
 .names em{
-  font-size:.62em;font-style:italic;font-weight:400;margin:4px 0;line-height:1;
+  font-size:.62em;font-style:italic;font-weight:400;margin:.525em 0 .075em;line-height:1;
   background:linear-gradient(100deg,#B2914F 0%,#8C6B33 34%,var(--gold-lit) 50%,#B2914F 68%);
   background-size:280% 100%;-webkit-background-clip:text;background-clip:text;
   -webkit-text-fill-color:transparent;color:transparent;
@@ -213,8 +214,10 @@ a{color:inherit}
 }
 .cal-grid .d.dim{color:rgba(244,234,219,.42)}
 .cal-grid .d.pick{color:var(--ink);font-weight:600}
+/* Сдвинут на 7% вниз: цифры в строке сидят ниже геометрического
+   центра ячейки, круг центрируется по ним, а не по клетке. */
 .cal-grid .d.pick::before{
-  content:"";position:absolute;inset:11%;border-radius:50%;
+  content:"";position:absolute;inset:18% 11% 4%;border-radius:50%;
   background:var(--gold);
   transform:scale(0);transition:transform .7s var(--ease);
 }
@@ -383,18 +386,8 @@ a{color:inherit}
   <header class="hero">
     <p class="eyebrow rv">10 · 10 · 2026</p>
 
-    <!-- шаңырақ -->
-    <svg class="orn draw rv d1" width="126" height="126" viewBox="0 0 140 140"
-         style="margin:28px auto 0" aria-hidden="true">
-      <circle cx="70" cy="70" r="52"></circle>
-      <circle cx="70" cy="70" r="34"></circle>
-      <path d="M36 70 A40 40 0 0 1 104 70"></path>
-      <path d="M36 70 A40 40 0 0 0 104 70"></path>
-      <path d="M70 36 A40 40 0 0 1 70 104"></path>
-      <path d="M70 36 A40 40 0 0 0 70 104"></path>
-      <path d="M122 70 H132 M106.8 106.8 L113.8 113.8 M70 122 V132 M33.2 106.8 L26.2 113.8 M18 70 H8 M33.2 33.2 L26.2 26.2 M70 18 V8 M106.8 33.2 L113.8 26.2"></path>
-      <circle cx="70" cy="70" r="5"></circle>
-    </svg>
+    <!-- ою-өрнек -->
+    <img class="oyu rv d1" src="oyu.svg" alt="" width="488" height="507">
 
     <h1 class="greeting rv d2">Құрметті<br>қонақтар!</h1>
 
