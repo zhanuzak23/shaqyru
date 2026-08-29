@@ -46,7 +46,6 @@ body{
   -webkit-font-smoothing:antialiased;
   overflow-x:hidden;
 }
-html.locked,html.locked body{overflow:hidden}
 ::selection{background:var(--bronze);color:var(--card)}
 a{color:inherit}
 :focus-visible{outline:2px solid var(--wine);outline-offset:4px;border-radius:3px}
@@ -81,35 +80,8 @@ a{color:inherit}
 @keyframes drawIn{to{stroke-dashoffset:0}}
 
 .oyu{display:block;width:clamp(130px,36vw,168px);height:auto}
-#seal .oyu{animation:oyuIn 1.8s .2s var(--ease) both}
 .hero .oyu{width:clamp(142px,39vw,182px);margin:30px auto 0}
-@keyframes oyuIn{from{opacity:0;transform:scale(.86)}to{opacity:1;transform:none}}
 
-/* ── стартовый экран ── */
-#seal{
-  position:fixed;inset:0;z-index:60;
-  display:grid;place-items:center;text-align:center;
-  background:radial-gradient(120% 80% at 50% 36%,#FCF8F1,var(--ground-top) 78%);
-  transition:opacity 1s var(--ease),visibility 1s;
-}
-#seal.gone{opacity:0;visibility:hidden}
-.seal-in{
-  padding:28px 24px;display:grid;justify-items:center;gap:22px;
-  animation:sealUp 1.5s var(--ease) both;
-}
-@keyframes sealUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
-.seal-eyebrow{font-size:11px;letter-spacing:.4em;text-transform:uppercase;color:var(--bronze);font-weight:500}
-.seal-mono{font-family:var(--serif);font-size:clamp(40px,13vw,58px);letter-spacing:.04em;line-height:1;font-weight:500;color:var(--ink)}
-.seal-mono em{font-style:italic;color:var(--bronze-lit)}
-.seal-names{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-soft);font-weight:400}
-.open-btn{
-  margin-top:6px;padding:18px 48px;border:1px solid var(--wine);border-radius:100px;
-  background:transparent;color:var(--wine);font-family:var(--sans);
-  font-size:11.5px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;cursor:pointer;
-  transition:background .5s var(--ease),color .5s var(--ease);
-}
-.open-btn:hover{background:var(--wine);color:var(--card)}
-.seal-hint{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);opacity:.7}
 
 /* ── шапка ── */
 .hero{
@@ -173,15 +145,6 @@ a{color:inherit}
 .row .v span{display:block;font-family:var(--sans);font-size:14.5px;font-weight:300;color:var(--ink-soft);margin-top:11px;line-height:1.7}
 .rule{height:1px;width:44px;justify-self:center;background:rgba(124,90,32,.34)}
 
-.btn{
-  display:inline-flex;align-items:center;justify-content:center;gap:9px;
-  padding:16px 32px;border-radius:100px;text-decoration:none;cursor:pointer;
-  font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;
-  background:var(--wine);color:var(--card);border:1px solid var(--wine);
-  transition:transform .4s var(--ease),background .4s var(--ease),box-shadow .4s var(--ease);
-}
-.btn:hover{background:var(--wine-lift);border-color:var(--wine-lift);transform:translateY(-2px);box-shadow:0 16px 30px -16px rgba(110,36,54,.6)}
-.btn svg{width:15px;height:15px;flex:none;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
 
 /* ── подвал ── */
 .host{padding:58px 26px 116px;text-align:center}
@@ -241,24 +204,10 @@ a{color:inherit}
 </style>
 </head>
 <body>
-<script>document.documentElement.classList.add("locked");</script>
-
 <div class="grain" aria-hidden="true"></div>
 <canvas id="dust" aria-hidden="true"></canvas>
 
 <audio id="track" src="music.mp3" loop preload="none"></audio>
-
-<!-- ══════════ стартовый экран ══════════ -->
-<div id="seal">
-  <div class="seal-in">
-    <p class="seal-eyebrow">Құрметті қонақтар</p>
-    <img class="oyu" src="oyu.svg" alt="" width="488" height="507">
-    <p class="seal-mono">М <em>&amp;</em> Т</p>
-    <p class="seal-names">Мейіржан &amp; Тоғжан</p>
-    <button class="open-btn" id="openBtn">Шақыруды ашу</button>
-    <p class="seal-hint">Әуенмен ашылады</p>
-  </div>
-</div>
 
 <main class="card">
 
@@ -314,12 +263,6 @@ a{color:inherit}
             <p class="v">«Тамаша» мейрамханасы<span>Астана қаласы,<br>Оңтүстік-Шығыс ықшамауданы,<br>Шарбақты көшесі, 40</span></p>
           </div>
         </div>
-
-        <a class="btn" target="_blank" rel="noopener"
-           href="https://2gis.kz/astana/search/%D0%A8%D0%B0%D1%80%D0%B1%D0%B0%D0%BA%D1%82%D1%8B%2040%20%D0%A2%D0%B0%D0%BC%D0%B0%D1%88%D0%B0">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-          2ГИС-те ашу
-        </a>
       </div>
     </section>
   </header>
@@ -439,12 +382,10 @@ var Music = (function(){
   };
 })();
 
-/* ── кнопки и открытие ── */
+/* ── кнопка музыки: по умолчанию выключена ── */
 (function(){
   var btn  = document.getElementById("music");
   var tip  = document.getElementById("mtip");
-  var seal = document.getElementById("seal");
-  var open = document.getElementById("openBtn");
   var tipT;
 
   function flash(text, ms){
@@ -465,16 +406,8 @@ var Music = (function(){
     else { Music.start(); sync(true); flash("Әуен ойнап тұр"); }
   });
 
-  open.addEventListener("click", function(){
-    seal.classList.add("gone");
-    document.documentElement.classList.remove("locked");
-    try { Music.start(); sync(true); } catch (e) { sync(false); }
-    setTimeout(function(){ seal.remove(); }, 1100);
-    setTimeout(function(){
-      document.querySelectorAll(".hero .rv, .hero .draw").forEach(function(el){ el.classList.add("in"); });
-    }, 120);
-    setTimeout(function(){ flash("Дыбысты өшіруге болады", 3400); }, 2800);
-  });
+  /* один раз подсказываем, что музыку можно включить */
+  setTimeout(function(){ flash("Әуенді қосуға болады", 4200); }, 1800);
 })();
 </script>
 </body>
