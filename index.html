@@ -23,7 +23,7 @@
   --paper-2:#E7DAC5;
 
   --on-wine:#F4EADB;
-  --on-wine-soft:rgba(244,234,219,.68);
+  --on-wine-soft:rgba(244,234,219,.72);
   --on-paper:#3A0F1A;
   --on-paper-soft:#8A6A62;
 
@@ -54,7 +54,6 @@ html.locked,html.locked body{overflow:hidden}
 a{color:inherit}
 :focus-visible{outline:2px solid var(--gold-lit);outline-offset:4px;border-radius:3px}
 
-/* ── paper grain ── */
 .grain{
   position:fixed;inset:0;z-index:40;pointer-events:none;opacity:.22;mix-blend-mode:overlay;
   background-image:url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
@@ -96,24 +95,32 @@ a{color:inherit}
   transition:opacity 1s var(--ease),visibility 1s;
 }
 #seal.gone{opacity:0;visibility:hidden}
-.seal-in{padding:32px;display:grid;justify-items:center;gap:24px;animation:sealUp 1.5s var(--ease) both}
+.seal-in{
+  padding:28px 24px;display:grid;justify-items:center;gap:22px;
+  animation:sealUp 1.5s var(--ease) both;
+}
 @keyframes sealUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
-.seal-eyebrow{font-size:9px;letter-spacing:.44em;text-transform:uppercase;color:var(--gold);font-weight:500}
-.seal-mono{font-family:var(--serif);font-size:clamp(30px,9vw,42px);letter-spacing:.05em;line-height:1}
+.seal-eyebrow{font-size:11px;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);font-weight:500}
+.oyu{
+  display:block;width:clamp(130px,36vw,168px);height:auto;
+  animation:oyuIn 1.8s .2s var(--ease) both;
+}
+@keyframes oyuIn{from{opacity:0;transform:scale(.86)}to{opacity:1;transform:none}}
+.seal-mono{font-family:var(--serif);font-size:clamp(40px,13vw,58px);letter-spacing:.04em;line-height:1;font-weight:500}
 .seal-mono em{font-style:italic;color:var(--gold)}
-.seal-names{font-size:9.5px;letter-spacing:.34em;text-transform:uppercase;color:var(--on-wine-soft)}
+.seal-names{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--on-wine-soft);font-weight:400}
 .open-btn{
-  margin-top:4px;padding:15px 42px;border:1px solid var(--gold-dim);border-radius:100px;
+  margin-top:6px;padding:18px 48px;border:1px solid var(--gold-dim);border-radius:100px;
   background:transparent;color:var(--on-wine);font-family:var(--sans);
-  font-size:9.5px;font-weight:500;letter-spacing:.3em;text-transform:uppercase;cursor:pointer;
+  font-size:11.5px;font-weight:500;letter-spacing:.28em;text-transform:uppercase;cursor:pointer;
   transition:background .5s var(--ease),border-color .5s var(--ease),color .5s var(--ease);
 }
 .open-btn:hover{background:var(--gold);border-color:var(--gold);color:var(--ink)}
-.seal-hint{font-size:8.5px;letter-spacing:.2em;text-transform:uppercase;color:rgba(244,234,219,.38)}
+.seal-hint{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(244,234,219,.42)}
 
 /* ── hero ── */
 .hero{
-  position:relative;padding:74px 26px 0;text-align:center;
+  position:relative;padding:78px 26px 0;text-align:center;
   background:
     radial-gradient(140% 62% at 50% -6%,rgba(99,24,43,.98),transparent 70%),
     linear-gradient(180deg,#5A1626,var(--wine) 62%);
@@ -126,20 +133,20 @@ a{color:inherit}
 @keyframes breathe{from{opacity:.5}to{opacity:1}}
 .hero>*{position:relative;z-index:2}
 
-.eyebrow{font-size:9px;letter-spacing:.44em;text-transform:uppercase;color:var(--gold);font-weight:500}
+.eyebrow{font-size:11px;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);font-weight:500}
 .greeting{
   font-family:var(--serif);font-weight:400;
-  font-size:clamp(23px,6.2vw,30px);letter-spacing:.15em;text-transform:uppercase;
-  line-height:1.5;text-wrap:balance;margin-top:22px;
+  font-size:clamp(27px,7.4vw,36px);letter-spacing:.13em;text-transform:uppercase;
+  line-height:1.42;text-wrap:balance;margin-top:26px;
 }
-.lead{margin:20px auto 0;max-width:34ch;font-size:14px;line-height:1.95;color:var(--on-wine-soft)}
+.lead{margin:24px auto 0;max-width:32ch;font-size:16px;line-height:1.9;color:var(--on-wine-soft)}
 
 /* ── arch (paper) ── */
 .arch{
-  position:relative;z-index:3;margin:52px 16px -1px;
+  position:relative;z-index:3;margin:56px 16px -1px;
   background:linear-gradient(180deg,var(--paper),var(--paper-2));
   color:var(--on-paper);
-  border-radius:264px 264px 0 0;padding-bottom:54px;
+  border-radius:264px 264px 0 0;padding-bottom:60px;
 }
 .arch::before{
   content:"";position:absolute;left:15px;right:15px;top:18px;bottom:0;
@@ -148,106 +155,150 @@ a{color:inherit}
 }
 .arch-in{
   position:relative;z-index:1;
-  width:min(302px,calc(100% - 88px));margin:0 auto;padding-top:78px;text-align:center;
-  display:grid;gap:26px;justify-items:center;
+  width:min(330px,calc(100% - 76px));margin:0 auto;padding-top:86px;text-align:center;
+  display:grid;gap:32px;justify-items:center;
 }
+.title-group{display:grid;justify-items:center;gap:14px}
 .names{
   font-family:var(--serif);font-weight:500;
-  font-size:clamp(28px,7.4vw,38px);letter-spacing:.005em;line-height:1.1;
+  font-size:clamp(32px,8.6vw,44px);letter-spacing:.005em;line-height:1.08;
   display:grid;justify-items:center;gap:2px;
 }
 .names em{
-  font-size:.66em;font-style:italic;font-weight:400;margin:3px 0;line-height:1;
+  font-size:.62em;font-style:italic;font-weight:400;margin:4px 0;line-height:1;
   background:linear-gradient(100deg,#B2914F 0%,#8C6B33 34%,var(--gold-lit) 50%,#B2914F 68%);
   background-size:280% 100%;-webkit-background-clip:text;background-clip:text;
   -webkit-text-fill-color:transparent;color:transparent;
   animation:shimmer 6.5s ease-in-out infinite;
 }
 @keyframes shimmer{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
-.occasion{font-size:9px;letter-spacing:.34em;text-transform:uppercase;color:var(--on-paper-soft);margin-top:-16px}
+.occasion{font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--on-paper-soft)}
 
-.info{display:grid;gap:24px;width:100%}
-.row .k{font-size:8.5px;letter-spacing:.32em;text-transform:uppercase;color:var(--on-paper-soft);margin-bottom:8px}
-.row .v{font-family:var(--serif);font-size:21px;line-height:1.4;font-weight:500}
-.row .v span{display:block;font-family:var(--sans);font-size:12.5px;font-weight:300;color:var(--on-paper-soft);margin-top:8px;line-height:1.75}
-.rule{height:1px;width:40px;justify-self:center;background:rgba(168,50,74,.3)}
+.info{display:grid;gap:30px;width:100%}
+.row .k{font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--on-paper-soft);margin-bottom:11px}
+.row .v{font-family:var(--serif);font-size:25px;line-height:1.35;font-weight:500}
+.row .v span{display:block;font-family:var(--sans);font-size:14.5px;font-weight:300;color:var(--on-paper-soft);margin-top:11px;line-height:1.7}
+.rule{height:1px;width:44px;justify-self:center;background:rgba(168,50,74,.3)}
 
-.acts{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
 .btn{
-  display:inline-flex;align-items:center;gap:8px;
-  padding:13px 24px;border-radius:100px;text-decoration:none;cursor:pointer;
-  font-family:var(--sans);font-size:9.5px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;
+  display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  padding:16px 32px;border-radius:100px;text-decoration:none;cursor:pointer;
+  font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;
   background:var(--wine);color:var(--paper);border:1px solid var(--wine);
   transition:transform .4s var(--ease),background .4s var(--ease),box-shadow .4s var(--ease);
 }
 .btn:hover{background:var(--wine-lift);border-color:var(--wine-lift);transform:translateY(-2px);box-shadow:0 16px 30px -16px rgba(42,9,18,.85)}
-.btn.ghost{background:transparent;color:var(--wine);border-color:rgba(72,17,31,.28)}
-.btn.ghost:hover{background:rgba(72,17,31,.06);box-shadow:none}
-.btn svg{width:13px;height:13px;flex:none;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.btn svg{width:15px;height:15px;flex:none;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
 
-/* ── shared section chrome ── */
-.sec{padding:56px 24px 0;text-align:center}
-.sec-title{font-family:var(--serif);font-size:clamp(16.5px,4.6vw,20px);letter-spacing:.2em;text-transform:uppercase;font-weight:400;text-wrap:balance}
-.sec-sub{margin-top:9px;font-size:9px;letter-spacing:.34em;text-transform:uppercase;color:var(--gold)}
+/* ── section chrome ── */
+.sec{padding:62px 24px 0;text-align:center}
+.sec-title{font-family:var(--serif);font-size:clamp(19px,5.2vw,23px);letter-spacing:.2em;text-transform:uppercase;font-weight:400;text-wrap:balance}
+.sec-sub{margin-top:11px;font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold)}
 
-/* ── countdown ── */
-.count{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;max-width:340px;margin:28px auto 0}
-.cell{padding:16px 4px;border:1px solid rgba(198,168,112,.22);border-radius:4px;background:rgba(99,24,43,.34)}
-.cell b{
-  display:block;font-family:var(--serif);font-weight:500;font-size:clamp(22px,6.4vw,28px);
-  line-height:1;color:var(--gold-lit);font-variant-numeric:tabular-nums;
-}
-.cell i{display:block;margin-top:9px;font-style:normal;font-size:8px;letter-spacing:.22em;text-transform:uppercase;color:var(--on-wine-soft)}
-.count-note{margin-top:16px;font-size:11.5px;letter-spacing:.06em;color:var(--on-wine-soft)}
-
-/* ── calendar ── */
+/* ── calendar — formal, on the wine ground ── */
 .cal{
-  margin:26px auto 0;max-width:352px;
-  background:var(--paper);color:var(--on-paper);
-  padding:26px 18px 20px;border-radius:5px;
-  box-shadow:0 28px 54px -30px rgba(0,0,0,.75);
+  margin:30px auto 0;max-width:400px;
+  border:1px solid rgba(198,168,112,.3);
+  padding:26px 20px 22px;
 }
-.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px}
-.cal-grid .wd{font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--on-paper-soft);padding-bottom:12px}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px 2px}
+.cal-grid .wd{
+  font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;
+  color:var(--gold);padding-bottom:16px;
+}
 .cal-grid .d{
   aspect-ratio:1;display:grid;place-items:center;position:relative;
-  font-family:var(--serif);font-size:15px;color:#6E4A44;font-variant-numeric:tabular-nums;
+  font-family:var(--serif);font-size:19px;font-weight:400;
+  color:var(--on-wine);font-variant-numeric:tabular-nums;
 }
-.cal-grid .d.sat,.cal-grid .d.sun{color:#A08079}
-.cal-grid .d.pick{color:var(--rose);font-weight:600;font-size:18px;z-index:1}
-.ring{position:absolute;width:172%;height:172%;left:-36%;top:-36%;pointer-events:none;overflow:visible}
-.ring path{fill:none;stroke:var(--rose);stroke-width:2.1;stroke-linecap:round;stroke-dasharray:340;stroke-dashoffset:340}
-.cal.in .ring path{animation:drawIn 1.7s .45s var(--ease) forwards}
-.cal-foot{margin-top:18px;padding-top:15px;border-top:1px solid rgba(168,50,74,.24);display:flex;align-items:center;justify-content:center;gap:14px}
-.cal-foot .t{font-family:var(--serif);font-size:19px;font-weight:500;color:var(--rose);font-variant-numeric:tabular-nums}
-.cal-foot .vl{width:1px;height:24px;background:rgba(168,50,74,.28)}
-.cal-foot .l{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--on-paper-soft)}
+.cal-grid .d.dim{color:rgba(244,234,219,.42)}
+.cal-grid .d.pick{color:var(--ink);font-weight:600}
+.cal-grid .d.pick::before{
+  content:"";position:absolute;inset:11%;border-radius:50%;
+  background:var(--gold);
+  transform:scale(0);transition:transform .7s var(--ease);
+}
+.cal-grid .d.pick>span{position:relative;z-index:1}
+.cal.in .d.pick::before{transform:scale(1)}
+.cal-foot{
+  margin-top:22px;padding-top:18px;border-top:1px solid rgba(198,168,112,.24);
+  display:flex;align-items:center;justify-content:center;gap:18px;
+}
+.cal-foot .t{font-family:var(--serif);font-size:23px;font-weight:500;color:var(--gold-lit);font-variant-numeric:tabular-nums}
+.cal-foot .vl{width:1px;height:26px;background:rgba(198,168,112,.3)}
+.cal-foot .l{font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--on-wine-soft)}
+
+/* ── countdown ── */
+.count{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;max-width:380px;margin:30px auto 0}
+.cell{padding:19px 4px;border:1px solid rgba(198,168,112,.22);background:rgba(99,24,43,.34)}
+.cell b{
+  display:block;font-family:var(--serif);font-weight:500;font-size:clamp(25px,7vw,31px);
+  line-height:1;color:var(--gold-lit);font-variant-numeric:tabular-nums;
+}
+.cell i{display:block;margin-top:11px;font-style:normal;font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--on-wine-soft)}
 
 /* ── quote ── */
-.quote{padding:60px 32px 0;text-align:center}
+.quote{padding:66px 32px 0;text-align:center}
 .quote p{
   font-family:var(--serif);font-style:italic;font-weight:400;
-  font-size:clamp(17px,4.6vw,21px);line-height:1.85;
-  color:rgba(244,234,219,.92);max-width:29ch;margin:0 auto;text-wrap:balance;
+  font-size:clamp(19px,5.2vw,23px);line-height:1.8;
+  color:rgba(244,234,219,.94);max-width:28ch;margin:0 auto;text-wrap:balance;
 }
 
-/* ── rsvp ── */
-.rsvp-in{
-  margin:26px auto 0;max-width:352px;
-  border:1px solid rgba(198,168,112,.26);border-radius:5px;
-  padding:26px 22px;background:rgba(99,24,43,.3);
+/* ── rsvp form ── */
+.form{
+  margin:30px auto 0;max-width:400px;text-align:left;
+  border:1px solid rgba(198,168,112,.26);
+  padding:28px 24px;background:rgba(99,24,43,.3);
+  display:grid;gap:24px;
 }
-.rsvp-in p{font-size:12.5px;line-height:1.85;color:var(--on-wine-soft);max-width:30ch;margin:0 auto}
-.rsvp-acts{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:20px}
-.btn.gold{background:var(--gold);border-color:var(--gold);color:var(--ink)}
+.lbl{
+  display:block;font-size:10.5px;letter-spacing:.26em;text-transform:uppercase;
+  color:var(--gold);font-weight:500;margin-bottom:12px;
+}
+.form input[type=text]{
+  width:100%;padding:15px 16px;
+  background:rgba(42,9,18,.5);color:var(--on-wine);
+  border:1px solid rgba(198,168,112,.28);border-radius:0;
+  font-family:var(--serif);font-size:19px;font-weight:400;
+  transition:border-color .35s var(--ease),background .35s var(--ease);
+}
+.form input[type=text]::placeholder{color:rgba(244,234,219,.34);font-family:var(--sans);font-size:15px}
+.form input[type=text]:focus{outline:none;border-color:var(--gold);background:rgba(42,9,18,.75)}
+.opts{border:none;display:grid;gap:11px}
+.opt{
+  display:flex;align-items:flex-start;gap:13px;cursor:pointer;
+  padding:15px 16px;border:1px solid rgba(198,168,112,.2);
+  transition:border-color .35s var(--ease),background .35s var(--ease);
+}
+.opt:hover{border-color:rgba(198,168,112,.45);background:rgba(198,168,112,.06)}
+.opt input{position:absolute;opacity:0;width:0;height:0}
+.dot{
+  flex:none;width:17px;height:17px;margin-top:2px;border-radius:50%;
+  border:1px solid rgba(198,168,112,.5);display:grid;place-items:center;
+  transition:border-color .3s var(--ease);
+}
+.dot::after{
+  content:"";width:9px;height:9px;border-radius:50%;background:var(--gold);
+  transform:scale(0);transition:transform .3s var(--ease);
+}
+.opt input:checked~.dot{border-color:var(--gold)}
+.opt input:checked~.dot::after{transform:scale(1)}
+.opt input:focus-visible~.dot{outline:2px solid var(--gold-lit);outline-offset:3px}
+.opt span.txt{font-size:15.5px;line-height:1.5;color:var(--on-wine)}
+.opt:has(input:checked){border-color:var(--gold);background:rgba(198,168,112,.1)}
+
+.btn.gold{background:var(--gold);border-color:var(--gold);color:var(--ink);width:100%}
 .btn.gold:hover{background:var(--gold-lit);border-color:var(--gold-lit)}
-.btn.outline{background:transparent;border-color:rgba(198,168,112,.34);color:var(--on-wine)}
-.btn.outline:hover{background:rgba(198,168,112,.12);box-shadow:none}
+.btn.gold:disabled{opacity:.5;cursor:default;transform:none;box-shadow:none}
+.form-msg{font-size:13.5px;line-height:1.65;text-align:center;min-height:1px}
+.form-msg.ok{color:var(--gold-lit)}
+.form-msg.err{color:#F0A0A8}
 
 /* ── host ── */
-.host{padding:52px 26px 112px;text-align:center}
-.host .k{font-size:9px;letter-spacing:.34em;text-transform:uppercase;color:var(--gold)}
-.host .n{margin-top:11px;font-family:var(--serif);font-size:21px;letter-spacing:.03em;font-weight:500}
+.host{padding:58px 26px 116px;text-align:center}
+.host .k{font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold)}
+.host .n{margin-top:13px;font-family:var(--serif);font-size:24px;letter-spacing:.02em;font-weight:500}
 
 /* ── reveal ── */
 .rv{opacity:0;transform:translateY(18px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
@@ -280,25 +331,28 @@ a{color:inherit}
 @keyframes eq{0%,100%{height:5px}50%{height:17px}}
 .mtip{
   position:fixed;right:84px;bottom:32px;z-index:49;
-  font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(244,234,219,.78);
-  background:rgba(42,9,18,.92);padding:8px 14px;border-radius:100px;border:1px solid rgba(198,168,112,.28);
+  font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(244,234,219,.8);
+  background:rgba(42,9,18,.92);padding:9px 15px;border-radius:100px;border:1px solid rgba(198,168,112,.28);
   white-space:nowrap;opacity:0;transform:translateX(8px);
   transition:opacity .45s var(--ease),transform .45s var(--ease);pointer-events:none;
 }
 .mtip.show{opacity:1;transform:none}
 
 @media (max-width:400px){
-  .arch{margin:44px 12px -1px;border-radius:210px 210px 0 0}
+  .arch{margin:48px 12px -1px;border-radius:210px 210px 0 0}
   .arch::before{border-radius:198px 198px 0 0;left:11px;right:11px}
-  .arch-in{width:calc(100% - 76px);padding-top:66px}
-  .cal{padding:22px 12px 18px}
-  .cal-grid .d{font-size:13.5px}
-  .cell{padding:14px 2px}
+  .arch-in{width:calc(100% - 60px);padding-top:72px;gap:28px}
+  .cal{padding:22px 13px 18px}
+  .cal-grid .d{font-size:17px}
+  .cal-grid .wd{font-size:9px}
+  .cell{padding:16px 2px}
+  .form{padding:24px 18px}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition-duration:.01ms!important}
   .rv{opacity:1;transform:none}
-  .draw path,.draw circle,.ring path{stroke-dashoffset:0}
+  .draw path,.draw circle{stroke-dashoffset:0}
+  .cal .d.pick::before{transform:scale(1)}
   #dust{display:none}
 }
 </style>
@@ -309,21 +363,13 @@ a{color:inherit}
 <div class="grain" aria-hidden="true"></div>
 <canvas id="dust" aria-hidden="true"></canvas>
 
+<audio id="track" src="music.mp3" loop preload="none"></audio>
+
 <!-- ══════════ opening seal ══════════ -->
 <div id="seal">
   <div class="seal-in">
     <p class="seal-eyebrow">Шақыру қағазы</p>
-
-    <svg class="orn" width="104" height="104" viewBox="0 0 140 140" aria-hidden="true">
-      <circle cx="70" cy="70" r="52"></circle>
-      <circle cx="70" cy="70" r="34"></circle>
-      <path d="M36 70 A40 40 0 0 1 104 70"></path>
-      <path d="M36 70 A40 40 0 0 0 104 70"></path>
-      <path d="M70 36 A40 40 0 0 1 70 104"></path>
-      <path d="M70 36 A40 40 0 0 0 70 104"></path>
-      <circle cx="70" cy="70" r="5"></circle>
-    </svg>
-
+    <img class="oyu" src="oyu.svg" alt="" width="488" height="507">
     <p class="seal-mono">М <em>&amp;</em> Т</p>
     <p class="seal-names">Мейіржан &amp; Тоғжан</p>
     <button class="open-btn" id="openBtn">Шақыруды ашу</button>
@@ -337,9 +383,9 @@ a{color:inherit}
   <header class="hero">
     <p class="eyebrow rv">10 · 10 · 2026</p>
 
-    <!-- шаңырақ — the yurt crown; the invitation is literally about raising one -->
-    <svg class="orn draw rv d1" width="118" height="118" viewBox="0 0 140 140"
-         style="margin:26px auto 0" aria-hidden="true">
+    <!-- шаңырақ -->
+    <svg class="orn draw rv d1" width="126" height="126" viewBox="0 0 140 140"
+         style="margin:28px auto 0" aria-hidden="true">
       <circle cx="70" cy="70" r="52"></circle>
       <circle cx="70" cy="70" r="34"></circle>
       <path d="M36 70 A40 40 0 0 1 104 70"></path>
@@ -358,9 +404,9 @@ a{color:inherit}
       бөліскіміз келеді.
     </p>
 
-    <!-- қошқар мүйіз divider -->
+    <!-- қошқар мүйіз -->
     <svg class="orn draw rv d4" width="320" height="34" viewBox="0 0 320 34"
-         style="margin:34px auto 0;max-width:100%" aria-hidden="true">
+         style="margin:38px auto 0;max-width:100%" aria-hidden="true">
       <path d="M154 17 L160 11 L166 17 L160 23 Z"></path>
       <path d="M168 17 C182 17, 188 8, 198 8 C210 8, 214 20, 203 21.5 C196 22.4, 195 16, 201 14.5"></path>
       <path d="M216 17 H312"></path>
@@ -371,10 +417,12 @@ a{color:inherit}
     <!-- ══════════ arch ══════════ -->
     <section class="arch rv">
       <div class="arch-in">
-        <p class="names"><span>Мейіржан</span><em>&amp;</em><span>Тоғжан</span></p>
-        <p class="occasion">Шаңырақ көтеру тойы</p>
+        <div class="title-group">
+          <p class="names"><span>Мейіржан</span><em>&amp;</em><span>Тоғжан</span></p>
+          <p class="occasion">Шаңырақ көтеру тойы</p>
+        </div>
 
-        <svg class="orn on-paper" width="128" height="30" viewBox="0 0 128 30" aria-hidden="true">
+        <svg class="orn on-paper" width="136" height="32" viewBox="0 0 128 30" aria-hidden="true">
           <path d="M58 15 L64 9 L70 15 L64 21 Z"></path>
           <path d="M72 15 C80 15, 84 8, 92 8 C102 8, 105 18, 96 19.4 C90 20.2, 89 15, 94 13.8"></path>
           <path d="M72 15 C80 15, 84 8, 92 8 C102 8, 105 18, 96 19.4 C90 20.2, 89 15, 94 13.8" transform="scale(-1,1) translate(-128,0)"></path>
@@ -397,17 +445,11 @@ a{color:inherit}
           </div>
         </div>
 
-        <div class="acts">
-          <a class="btn" target="_blank" rel="noopener"
-             href="https://2gis.kz/astana/search/%D0%A8%D0%B0%D1%80%D0%B1%D0%B0%D0%BA%D1%82%D1%8B%2040%20%D0%A2%D0%B0%D0%BC%D0%B0%D1%88%D0%B0">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-            2ГИС-те ашу
-          </a>
-          <a class="btn ghost" target="_blank" rel="noopener"
-             href="https://www.google.com/maps/search/?api=1&amp;query=%D0%A2%D0%B0%D0%BC%D0%B0%D1%88%D0%B0%20%D0%A8%D0%B0%D1%80%D0%B1%D0%B0%D0%BA%D1%82%D1%8B%2040%20%D0%90%D1%81%D1%82%D0%B0%D0%BD%D0%B0">
-            Google Карта
-          </a>
-        </div>
+        <a class="btn" target="_blank" rel="noopener"
+           href="https://2gis.kz/astana/search/%D0%A8%D0%B0%D1%80%D0%B1%D0%B0%D0%BA%D1%82%D1%8B%2040%20%D0%A2%D0%B0%D0%BC%D0%B0%D1%88%D0%B0">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+          2ГИС-те ашу
+        </a>
       </div>
     </section>
   </header>
@@ -416,7 +458,6 @@ a{color:inherit}
   <section class="sec rv">
     <h2 class="sec-title">Той күні</h2>
     <p class="sec-sub">Қазан · 2026</p>
-
     <div class="cal" id="calCard">
       <div class="cal-grid" id="calGrid"></div>
       <div class="cal-foot">
@@ -425,25 +466,17 @@ a{color:inherit}
         <p class="l">Той салтанаты</p>
       </div>
     </div>
-
-    <div class="acts" style="margin-top:20px">
-      <a class="btn outline" id="gcal" target="_blank" rel="noopener" href="#">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M3 10h18M8 3v4M16 3v4"></path></svg>
-        Күнтізбеге қосу
-      </a>
-    </div>
   </section>
 
   <!-- ══════════ countdown ══════════ -->
   <section class="sec rv">
     <h2 class="sec-title">Тойға дейін</h2>
-    <div class="count" id="count" role="timer" aria-live="off">
+    <div class="count" id="count" role="timer">
       <div class="cell"><b id="cd">—</b><i>күн</i></div>
       <div class="cell"><b id="ch">—</b><i>сағат</i></div>
       <div class="cell"><b id="cm">—</b><i>минут</i></div>
       <div class="cell"><b id="cs">—</b><i>секунд</i></div>
     </div>
-    <p class="count-note" id="countNote">Сіздермен бірге санап отырмыз</p>
   </section>
 
   <!-- ══════════ quote ══════════ -->
@@ -454,18 +487,39 @@ a{color:inherit}
   <!-- ══════════ rsvp ══════════ -->
   <section class="sec rv">
     <h2 class="sec-title">Жауабыңызды күтеміз</h2>
-    <div class="rsvp-in">
-      <p>Дастарқан басын дайындау үшін қатысуыңызды алдын ала хабарлауыңызды сұраймыз.</p>
-      <div class="rsvp-acts">
-        <a class="btn gold" id="rsvpYes" target="_blank" rel="noopener" href="#">Қатысамын</a>
-        <a class="btn outline" id="rsvpNo" target="_blank" rel="noopener" href="#">Қатыса алмаймын</a>
+    <form class="form" id="rsvpForm" novalidate>
+      <div>
+        <label class="lbl" for="guestName">Атыңыз</label>
+        <input type="text" id="guestName" name="name" placeholder="Аты-жөніңіз" autocomplete="name">
       </div>
-    </div>
+
+      <fieldset class="opts">
+        <legend class="lbl">Жауабыңыз</legend>
+        <label class="opt">
+          <input type="radio" name="answer" value="Ия, әрине келемін">
+          <span class="dot" aria-hidden="true"></span>
+          <span class="txt">Ия, әрине келемін</span>
+        </label>
+        <label class="opt">
+          <input type="radio" name="answer" value="Жұбайыммен бірге келемін">
+          <span class="dot" aria-hidden="true"></span>
+          <span class="txt">Жұбайыммен бірге келемін</span>
+        </label>
+        <label class="opt">
+          <input type="radio" name="answer" value="Өкінішке орай, келе алмаймын">
+          <span class="dot" aria-hidden="true"></span>
+          <span class="txt">Өкінішке орай, келе алмаймын</span>
+        </label>
+      </fieldset>
+
+      <button type="submit" class="btn gold" id="rsvpSubmit">Жіберу</button>
+      <p class="form-msg" id="formMsg" role="status" aria-live="polite"></p>
+    </form>
   </section>
 
   <!-- ══════════ host ══════════ -->
   <footer class="host rv d1">
-    <svg class="orn" width="128" height="30" viewBox="0 0 128 30" style="margin-bottom:26px" aria-hidden="true">
+    <svg class="orn" width="136" height="32" viewBox="0 0 128 30" style="margin-bottom:28px" aria-hidden="true">
       <path d="M58 15 L64 9 L70 15 L64 21 Z"></path>
       <path d="M72 15 C80 15, 84 8, 92 8 C102 8, 105 18, 96 19.4 C90 20.2, 89 15, 94 13.8"></path>
       <path d="M72 15 C80 15, 84 8, 92 8 C102 8, 105 18, 96 19.4 C90 20.2, 89 15, 94 13.8" transform="scale(-1,1) translate(-128,0)"></path>
@@ -482,41 +536,18 @@ a{color:inherit}
 
 <script>
 /* ═══════════════════════════════════════════════════
-   ⚙ ӨЗГЕРТУГЕ БОЛАТЫН ПАРАМЕТРЛЕР / EDIT THESE
+   ⚙  ПАРАМЕТРЛЕР / SETTINGS
    ═══════════════════════════════════════════════════ */
 var CONFIG = {
-  /* WhatsApp нөмірі — халықаралық форматта, + және бос орынсыз */
-  phone: "77000000000",
-  when:  "10 қазан 2026, 18:00",
-  place: "«Тамаша» мейрамханасы, Астана, Шарбақты к-сі 40",
+  /* Telegram бот — @BotFather берген токен және чат id */
+  tgToken: "PASTE_BOT_TOKEN",
+  tgChat:  "PASTE_CHAT_ID",
+
   /* Той басталатын сәт — Астана уақыты (UTC+5) */
-  startISO: "2026-10-10T18:00:00+05:00",
-  hours: 5
+  startISO: "2026-10-10T18:00:00+05:00"
 };
 
-/* ── RSVP сілтемелері ── */
-(function(){
-  function wa(text){
-    return "https://wa.me/" + CONFIG.phone + "?text=" + encodeURIComponent(text);
-  }
-  document.getElementById("rsvpYes").href =
-    wa("Сәлеметсіз бе! Мейіржан мен Тоғжанның тойына қатысамын. Рақмет шақырғаныңызға!");
-  document.getElementById("rsvpNo").href =
-    wa("Сәлеметсіз бе! Өкінішке орай, тойға қатыса алмаймын. Жас жұбайларға бақыт тілеймін!");
-
-  /* ── Күнтізбеге қосу (Google Calendar) ── */
-  var start = new Date(CONFIG.startISO);
-  var end   = new Date(start.getTime() + CONFIG.hours * 3600e3);
-  function z(d){ return d.toISOString().replace(/[-:]/g,"").replace(/\.\d{3}/,""); }
-  document.getElementById("gcal").href =
-    "https://calendar.google.com/calendar/render?action=TEMPLATE" +
-    "&text="     + encodeURIComponent("Мейіржан & Тоғжанның тойы") +
-    "&dates="    + z(start) + "/" + z(end) +
-    "&location=" + encodeURIComponent(CONFIG.place) +
-    "&details="  + encodeURIComponent("Шаңырақ көтеру тойы. " + CONFIG.when);
-})();
-
-/* ── Күнтізбе торы: 2026 жылғы қазан, дүйсенбіден басталады ── */
+/* ── Күнтізбе торы: 2026 жылғы қазан, дүйсенбіден ── */
 (function(){
   var wd = ["Дс","Сс","Ср","Бс","Жм","Сн","Жк"];
   var grid = document.getElementById("calGrid");
@@ -532,12 +563,9 @@ var CONFIG = {
   for (var d = 1; d <= days; d++){
     var col = (lead + d - 1) % 7;
     var e = document.createElement("div");
-    e.className = "d" + (col === 5 ? " sat" : col === 6 ? " sun" : "") + (d === 10 ? " pick" : "");
+    e.className = "d" + (col > 4 ? " dim" : "") + (d === 10 ? " pick" : "");
     if (d === 10){
-      e.innerHTML =
-        '<svg class="ring" viewBox="0 0 100 100" aria-hidden="true"><path d="M76 30 C70 17, 46 11, 29 19 ' +
-        'C11 28, 8 50, 19 64 C31 79, 60 84, 75 71 C88 60, 88 41, 78 30 C70 21, 57 17, 45 20"/></svg>' +
-        '<span>10</span>';
+      e.innerHTML = "<span>10</span>";
       e.setAttribute("aria-label", "10 қазан — той күні");
     } else {
       e.textContent = d;
@@ -553,14 +581,12 @@ var CONFIG = {
     d: document.getElementById("cd"), h: document.getElementById("ch"),
     m: document.getElementById("cm"), s: document.getElementById("cs")
   };
-  var note = document.getElementById("countNote");
   function pad(n){ return n < 10 ? "0" + n : "" + n; }
 
   function tick(){
     var diff = target - Date.now();
     if (diff <= 0){
       el.d.textContent = el.h.textContent = el.m.textContent = el.s.textContent = "00";
-      note.textContent = "Той басталды. Қош келдіңіздер!";
       clearInterval(timer);
       return;
     }
@@ -574,7 +600,62 @@ var CONFIG = {
   var timer = setInterval(tick, 1000);
 })();
 
-/* ── Скролл кезіндегі анимация ── */
+/* ── RSVP → Telegram ── */
+(function(){
+  var form = document.getElementById("rsvpForm");
+  var name = document.getElementById("guestName");
+  var msg  = document.getElementById("formMsg");
+  var send = document.getElementById("rsvpSubmit");
+
+  function say(text, kind){
+    msg.textContent = text;
+    msg.className = "form-msg" + (kind ? " " + kind : "");
+  }
+
+  form.addEventListener("submit", function(ev){
+    ev.preventDefault();
+
+    var who = name.value.trim();
+    var picked = form.querySelector('input[name="answer"]:checked');
+
+    if (!who){ say("Атыңызды жазыңыз.", "err"); name.focus(); return; }
+    if (!picked){ say("Жауап нұсқасын таңдаңыз.", "err"); return; }
+
+    if (CONFIG.tgToken.indexOf("PASTE") === 0){
+      say("Бот әлі қосылмаған. Ұйымдастырушыға хабарласыңыз.", "err");
+      return;
+    }
+
+    send.disabled = true;
+    say("Жіберілуде…");
+
+    var text =
+      "🎉 Той — жаңа жауап\n\n" +
+      "👤 " + who + "\n" +
+      "✉️ " + picked.value + "\n" +
+      "🕒 " + new Date().toLocaleString("kk-KZ", { timeZone: "Asia/Almaty" });
+
+    fetch("https://api.telegram.org/bot" + CONFIG.tgToken + "/sendMessage", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ chat_id: CONFIG.tgChat, text: text })
+    })
+    .then(function(r){ return r.json(); })
+    .then(function(data){
+      if (!data.ok) throw new Error(data.description || "Telegram қатесі");
+      form.querySelector(".opts").disabled = true;
+      name.disabled = true;
+      send.textContent = "Жіберілді";
+      say("Рақмет, " + who + "! Жауабыңыз қабылданды.", "ok");
+    })
+    .catch(function(){
+      send.disabled = false;
+      say("Жіберілмеді. Интернетті тексеріп, қайта көріңіз.", "err");
+    });
+  });
+})();
+
+/* ── Скролл анимациясы ── */
 (function(){
   var io = new IntersectionObserver(function(entries){
     entries.forEach(function(e){
@@ -601,8 +682,8 @@ var CONFIG = {
 
   for (var i = 0; i < 34; i++){
     parts.push({
-      x: Math.random() * 1, y: Math.random() * 1,
-      r: (Math.random() * 1.4 + .5),
+      x: Math.random(), y: Math.random(),
+      r: Math.random() * 1.4 + .5,
       vy: -(Math.random() * .00016 + .00005),
       vx: (Math.random() - .5) * .00008,
       a: Math.random() * .45 + .12,
@@ -626,95 +707,53 @@ var CONFIG = {
   requestAnimationFrame(frame);
 })();
 
-/* ── Әуен: жұмсақ амбиент (Web Audio) ── */
+/* ── Әуен: Дос-Мұқасан — Той жыры ── */
 var Music = (function(){
-  var ctx = null, bus = null, timer = null, playing = false, step = 0;
+  var track = document.getElementById("track");
+  var ctx, gain, wired = false, playing = false;
 
-  /* Dm — Bb — F — C, жылы регистрде */
-  var chords = [
-    [146.83, 220.00, 261.63, 349.23],
-    [116.54, 174.61, 233.08, 293.66],
-    [174.61, 261.63, 349.23, 440.00],
-    [130.81, 196.00, 261.63, 329.63]
-  ];
-  var bells = [587.33, 698.46, 880.00, 659.25, 523.25, 440.00, 587.33, 493.88];
-
-  function reverb(){
-    var len = ctx.sampleRate * 3.2;
-    var buf = ctx.createBuffer(2, len, ctx.sampleRate);
-    for (var ch = 0; ch < 2; ch++){
-      var data = buf.getChannelData(ch);
-      for (var i = 0; i < len; i++){
-        data[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, 2.6);
-      }
+  /* Web Audio арқылы қосамыз — iOS-та audio.volume жұмыс істемейді */
+  function wire(){
+    if (wired) return;
+    try {
+      ctx = new (window.AudioContext || window.webkitAudioContext)();
+      var src = ctx.createMediaElementSource(track);
+      gain = ctx.createGain();
+      gain.gain.value = 0;
+      src.connect(gain).connect(ctx.destination);
+      wired = true;
+    } catch (e) {
+      wired = false;           /* фоллбэк: тікелей ойнатамыз */
     }
-    var cv = ctx.createConvolver(); cv.buffer = buf; return cv;
   }
 
-  function voice(freq, at, dur, vol, type){
-    var o = ctx.createOscillator(), g = ctx.createGain();
-    o.type = type || "sine";
-    o.frequency.value = freq;
-    g.gain.setValueAtTime(0.0001, at);
-    g.gain.linearRampToValueAtTime(vol, at + dur * .28);
-    g.gain.exponentialRampToValueAtTime(0.0001, at + dur);
-    o.connect(g).connect(bus);
-    o.start(at);
-    o.stop(at + dur + .1);
-  }
-
-  function bar(){
-    var t = ctx.currentTime + .06;
-    var c = chords[step % chords.length];
-    c.forEach(function(f, i){ voice(f, t + i * .18, 5.2, .052, "sine"); });
-    voice(c[0] / 2, t, 5.4, .03, "sine");
-    voice(bells[step % bells.length], t + 1.1, 3.4, .026, "triangle");
-    if (step % 2 === 1) voice(bells[(step + 3) % bells.length], t + 2.6, 2.6, .017, "triangle");
-    step++;
-  }
-
-  function build(){
-    ctx = ctx || new (window.AudioContext || window.webkitAudioContext)();
-    if (bus) return;
-    bus = ctx.createGain();
-    bus.gain.value = 0;
-    var lp = ctx.createBiquadFilter();
-    lp.type = "lowpass"; lp.frequency.value = 1750; lp.Q.value = .6;
-    var wet = ctx.createGain(); wet.gain.value = .34;
-    var out = ctx.createGain(); out.gain.value = .9;
-    var rv = reverb();
-    bus.connect(lp);
-    lp.connect(out);
-    lp.connect(wet); wet.connect(rv); rv.connect(out);
-    out.connect(ctx.destination);
+  function ramp(to, sec){
+    if (!gain || !ctx) return;
+    var now = ctx.currentTime;
+    gain.gain.cancelScheduledValues(now);
+    gain.gain.setValueAtTime(gain.gain.value, now);
+    gain.gain.linearRampToValueAtTime(to, now + sec);
   }
 
   return {
     start: function(){
-      build();
-      if (ctx.state === "suspended") ctx.resume();
-      bus.gain.cancelScheduledValues(ctx.currentTime);
-      bus.gain.setValueAtTime(Math.max(bus.gain.value, 0.0001), ctx.currentTime);
-      bus.gain.linearRampToValueAtTime(1, ctx.currentTime + 2.4);
-      bar();
-      clearInterval(timer);
-      timer = setInterval(bar, 5000);
+      wire();
+      if (ctx && ctx.state === "suspended") ctx.resume();
+      var p = track.play();
+      if (p && p.catch) p.catch(function(){ playing = false; });
+      ramp(1, 2.5);
       playing = true;
     },
     stop: function(){
-      if (bus){
-        bus.gain.cancelScheduledValues(ctx.currentTime);
-        bus.gain.setValueAtTime(bus.gain.value, ctx.currentTime);
-        bus.gain.linearRampToValueAtTime(0, ctx.currentTime + 1);
-      }
-      clearInterval(timer);
+      ramp(0, .8);
+      setTimeout(function(){ if (!playing) track.pause(); }, 850);
       playing = false;
     },
     playing: function(){ return playing; }
   };
 })();
 
-/* ── Түйме мен ашылу ── */
+/* ── Түймелер мен ашылу ── */
 (function(){
   var btn  = document.getElementById("music");
   var tip  = document.getElementById("mtip");
@@ -748,16 +787,7 @@ var Music = (function(){
     setTimeout(function(){
       document.querySelectorAll(".hero .rv, .hero .draw").forEach(function(el){ el.classList.add("in"); });
     }, 120);
-    setTimeout(function(){ flash("Дыбысты өшіруге болады", 3400); }, 2600);
-  });
-
-  /* Егер JS баяу тиелсе де мазмұн көрінсін */
-  addEventListener("load", function(){
-    setTimeout(function(){
-      if (!seal.isConnected){
-        document.querySelectorAll(".hero .rv, .hero .draw").forEach(function(el){ el.classList.add("in"); });
-      }
-    }, 60);
+    setTimeout(function(){ flash("Дыбысты өшіруге болады", 3400); }, 2800);
   });
 })();
 </script>
