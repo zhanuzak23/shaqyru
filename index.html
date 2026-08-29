@@ -27,8 +27,8 @@
   --wine:#6E2436;          /* кнопки, сильный акцент */
   --wine-lift:#88304A;
   --rose:#A8324A;          /* орнаменты */
-  --bronze:#8F6B2E;        /* капслочные подписи */
-  --bronze-lit:#C9A863;
+  --bronze:#7C5A20;        /* капслочные подписи */
+  --bronze-lit:#A9843F;
 
   --serif:"Playfair Display","Noto Serif",Georgia,"Times New Roman",serif;
   --sans:"Manrope","Noto Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
@@ -160,7 +160,7 @@ a{color:inherit}
    Поля несимметричны, чтобы на глаз зазоры были равными. */
 .names em{
   font-size:.62em;font-style:italic;font-weight:400;margin:.475em 0 .125em;line-height:1;
-  background:linear-gradient(100deg,#A9843F 0%,#75551D 34%,var(--bronze-lit) 50%,#A9843F 68%);
+  background:linear-gradient(100deg,#7C5A20 0%,#5E4415 34%,var(--bronze-lit) 50%,#7C5A20 68%);
   background-size:280% 100%;-webkit-background-clip:text;background-clip:text;
   -webkit-text-fill-color:transparent;color:transparent;
   animation:shimmer 6.5s ease-in-out infinite;
@@ -387,7 +387,7 @@ a{color:inherit}
       if (q.y < -.05){ q.y = 1.05; q.x = Math.random(); }
       x.beginPath();
       x.arc(q.x * w, q.y * h, q.r * devicePixelRatio, 0, 6.2832);
-      x.fillStyle = "rgba(143,107,46," + (q.a * (.6 + .4 * Math.sin(t / 1800 + q.p))) + ")";
+      x.fillStyle = "rgba(124,90,32," + (q.a * (.6 + .4 * Math.sin(t / 1800 + q.p))) + ")";
       x.fill();
     }
     requestAnimationFrame(frame);
