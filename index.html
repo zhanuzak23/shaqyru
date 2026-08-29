@@ -26,7 +26,6 @@
 
   --wine:#6E2436;          /* кнопки, сильный акцент */
   --wine-lift:#88304A;
-  --rose:#A8324A;          /* орнаменты */
   --bronze:#7C5A20;        /* капслочные подписи */
   --bronze-lit:#A9843F;
 
@@ -69,7 +68,7 @@ a{color:inherit}
 /* ── орнаменты ── */
 .orn{display:block;margin:0 auto}
 .orn path,.orn circle{
-  fill:none;stroke:var(--rose);stroke-width:1;
+  fill:none;stroke:var(--bronze-lit);stroke-width:1;
   stroke-linecap:round;stroke-linejoin:round;
   vector-effect:non-scaling-stroke;
 }
@@ -101,7 +100,7 @@ a{color:inherit}
 @keyframes sealUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
 .seal-eyebrow{font-size:11px;letter-spacing:.4em;text-transform:uppercase;color:var(--bronze);font-weight:500}
 .seal-mono{font-family:var(--serif);font-size:clamp(40px,13vw,58px);letter-spacing:.04em;line-height:1;font-weight:500;color:var(--ink)}
-.seal-mono em{font-style:italic;color:var(--rose)}
+.seal-mono em{font-style:italic;color:var(--bronze-lit)}
 .seal-names{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-soft);font-weight:400}
 .open-btn{
   margin-top:6px;padding:18px 48px;border:1px solid var(--wine);border-radius:100px;
@@ -142,7 +141,7 @@ a{color:inherit}
 }
 .arch::before{
   content:"";position:absolute;left:15px;right:15px;top:18px;bottom:0;
-  border:1px solid rgba(168,50,74,.26);border-bottom:none;
+  border:1px solid rgba(124,90,32,.28);border-bottom:none;
   border-radius:250px 250px 0 0;pointer-events:none;
 }
 .arch-in{
@@ -172,7 +171,7 @@ a{color:inherit}
 .row .k{font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--bronze);margin-bottom:11px;font-weight:500}
 .row .v{font-family:var(--serif);font-size:25px;line-height:1.35;font-weight:500;color:var(--ink)}
 .row .v span{display:block;font-family:var(--sans);font-size:14.5px;font-weight:300;color:var(--ink-soft);margin-top:11px;line-height:1.7}
-.rule{height:1px;width:44px;justify-self:center;background:rgba(168,50,74,.3)}
+.rule{height:1px;width:44px;justify-self:center;background:rgba(124,90,32,.34)}
 
 .btn{
   display:inline-flex;align-items:center;justify-content:center;gap:9px;
