@@ -284,15 +284,32 @@ a{color:inherit}
 </button>
 
 <script>
-/* ── появление при скролле ── */
+/* ── появление при скролле ──
+   Намеренно без IntersectionObserver: контент первого экрана не должен
+   зависеть от того, доставит браузер коллбэк или нет. reveal() вызывается
+   синхронно, поэтому видимая часть страницы показана сразу и при любом сбое. */
 (function(){
-  var io = new IntersectionObserver(function(entries){
-    entries.forEach(function(e){
-      if (e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); }
-    });
-  }, { threshold: .12, rootMargin: "0px 0px -6% 0px" });
+  var items = [].slice.call(document.querySelectorAll(".rv, .draw"));
+  var queued = false;
 
-  document.querySelectorAll(".rv, .draw").forEach(function(el){ io.observe(el); });
+  function reveal(){
+    queued = false;
+    for (var i = items.length - 1; i >= 0; i--){
+      if (items[i].getBoundingClientRect().top < innerHeight * 0.94){
+        items[i].classList.add("in");
+        items.splice(i, 1);
+      }
+    }
+  }
+
+  function onScroll(){
+    if (!queued){ queued = true; requestAnimationFrame(reveal); }
+  }
+
+  reveal();
+  addEventListener("scroll", onScroll, { passive: true });
+  addEventListener("resize", onScroll);
+  addEventListener("load", reveal);
 })();
 
 /* ── бронзовая пыль в воздухе ── */
